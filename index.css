@@ -1,8 +1,54 @@
 h1{
-color:#00ffff;
+  font-size: 50px;
+color:#ff0095;
 }
 
 iframe{
 width: 600px;
 height: 600px;
 }
+
+.main p{
+font-size:20px
+}
+
+.button {
+    display       : inline-block;
+    border-radius : 20%;          /* 角丸       */
+    font-size     : 28pt;        /* 文字サイズ */
+    text-align    : center;      /* 文字位置   */
+    cursor        : pointer;     /* カーソル   */
+    padding       : 7px 100px;   /* 余白       */
+    background    : #ff7f7f;     /* 背景色     */
+    color         : #ffffff;     /* 文字色     */
+    line-height   : 1em;         /* 1行の高さ  */
+    transition    : .3s;         /* なめらか変化 */
+    box-shadow    : 4px 4px #666666;  /* 影の設定 */
+    border        : 2px solid #ff7f7f;    /* 枠の指定 */
+  }
+  .button:hover {
+    box-shadow    : none;        /* カーソル時の影消去 */
+    color         : #ff7f7f;     /* 背景色     */
+    background    : #ffffff;     /* 文字色     */
+  }
+
+
+  .sub {
+    display       : inline-block;
+    border-radius : 20%;          /* 角丸       */
+    font-size     : 28pt;        /* 文字サイズ */
+    text-align    : center;      /* 文字位置   */
+    cursor        : pointer;     /* カーソル   */
+    padding       : 7px 178px 7px 100px;   /* 余白       */
+    background    : #6666ff;     /* 背景色     */
+    color         : #ffffff;     /* 文字色     */
+    line-height   : 1em;         /* 1行の高さ  */
+    transition    : .3s;         /* なめらか変化 */
+    box-shadow    : 4px 4px #666666;  /* 影の設定 */
+    border        : 2px solid #6666ff;    /* 枠の指定 */
+  }
+  .sub:hover {
+    box-shadow    : none;        /* カーソル時の影消去 */
+    color         : #6666ff;     /* 背景色     */
+    background    : #ffffff;     /* 文字色     */
+  }
