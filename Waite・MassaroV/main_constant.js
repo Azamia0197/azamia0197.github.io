@@ -61,8 +61,8 @@ var comp_line = {
 obj_type: 'rect', 
   startX: 3*canvas_width/4.0,
   startY: comp_posY, 
-  width: 0,
-  height: std_height,
+  width: std_width,
+  height: 0,
   line_width: 3,
   line_color: "#000000",
 }
@@ -112,7 +112,7 @@ var trial = {
     var comp_len = trial.comp_len;
     
     // 刺激の座標指定
-    trial.stimuli[0].width = comp_len;
+    trial.stimuli[0].height = comp_len;
     
     trial.stimuli[2].x1 = canvas_width/4.0-std_width/2.0;
     trial.stimuli[2].x2 = canvas_width/4.0-std_width/2.0+std_arrow_len*Math.cos(rad);
@@ -144,6 +144,7 @@ var test_procedure = {
   timeline_variables: factors,
   randomize_order: true
 }
+
 //フルスクはじまり
 var start_fullscreen = {
   type: 'fullscreen',
@@ -164,13 +165,12 @@ var start_experiment_procedure = {
   stimulus: '<p><b>ウエイト・マッサロの実験（恒常法）</b></p>',
   choices: [" "],
   prompt: "<p>左と右に長方形が出てきます。左の長方形の四隅には矢羽（短い直線）がついています。<br/><br/>"+
-    "右（矢羽がない方）の長方形の横方向の長さが左（矢羽がある方）の長方形の横方向の長さよりも短く見えれば「左矢印キー」を、右の長方形の横方向の長さが左の長方形の横方向の長さよりも長く見えれば「右矢印キー」を押してください。<br/><br/>"+
-    "または、左右どちらの長方形の横方向の長さの方が長く見えるか、左右の矢印キーで回答してください（意味は同じです）。<br/><br/>"+
-    "判断するのは下図の赤い矢印の方向の長さです。</p><img src = ../WM教示横.png>"+
-    "<p>左右の長方形の横方向の長さが同じ長さに見える場合でも、どちらが長く見えるか無理矢理判断して回答してください。<br/><br/>"+
-    "スペースキーを押すと始まります。"+
-    "</p>"
-
+  "右（矢羽がない方）の長方形の縦方向の長さが左（矢羽がある方）の長方形の縦方向の長さよりも短く見えれば「左矢印キー」を、右の長方形の縦方向の長さが左の長方形の縦方向の長さよりも長く見えれば「右矢印キー」を押してください。<br/><br/>"+
+  "または、左右どちらの長方形の縦方向の長さの方が長く見えるか、左右の矢印キーで回答してください（意味は同じです）。<br/><br/>"+
+  "判断するのは下図の赤い矢印の方向の長さです。</p><img src = ../WM教示縦.png>"+
+  "<p>左右の長方形の縦方向の長さが同じ長さに見える場合でも、どちらが長く見えるか無理矢理判断して回答してください。<br/><br/>"+
+  "スペースキーを押すと始まります。"+
+  "</p>"
 };
 
 // 実験終了時の画面
@@ -182,17 +182,17 @@ var finish_experiment_procedure = {
     var dt = jsPsych.data.get().filter([{record: 1}]);    
     dt = dt.ignore(["response_type", "key_press", "avg_frame_time", "trial_type", "trial_index", "time_elapsed", "internal_node_id", "stimulus", "center_x", "center_y", "record"]);
     var txt = dt.csv().replace(/,/g, "\t").replace(/"/g,"");
-    trial.stimulus = '<p>実験終了です。</p><p>WaiteMassaroH.csvというファイル名のデータファイルが自動的にダウンロードされています。Excelで開けるので確認してください。</p>'+
+    trial.stimulus = '<p>実験終了です。</p><p>WaiteMassaroV.csvというファイル名のデータファイルが自動的にダウンロードされています。Excelで開けるので確認してください。</p>'+
       '<p>データファイルがダウンロードできていない場合は、下の枠の中のデータをエクセルなどに貼り付けて保存しましょう。</p>'+
       '<p>枠の中をクリックしてから、Ctrl+A (コントロールキーを押しながらAキーを押す)ですべて選択し、Ctrl+Cでクリップボードにコピーできます。</p>'+
       '<p>コピーしたら、新しいエクセルファイルを開き、Ctrl+Vで貼付けましょう。</p>'+
       '<textarea style="width:450px; height: 300px">'+txt+'</textarea>';
-    dt.localSave('csv', 'WaiteMassaroH.csv');    
+    dt.localSave('csv', 'WaiteMassaroV.csv');    
   }
 };
 
 jsPsych.init({
   override_safe_mode: true,
   default_iti: 100,
-  timeline: [start_fullscreen, start_experiment_procedure, test_procedure, end_fullscreen, finish_experiment_procedure]
+  timeline:  [start_fullscreen, start_experiment_procedure, test_procedure, end_fullscreen, finish_experiment_procedure]
 });
